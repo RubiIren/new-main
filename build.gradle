@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8' //так как винда не правильно кодирует кириллицу
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+dependencies {
+    // Selenide
+    implementation 'com.codeborne:selenide:6.1.2'
+    testRuntimeOnly("org.slf4j:slf4j-simple:1.7.32") //пишет лог при запуске тестов
+
+    // JUnit 5
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+}
+
+test {
+    useJUnitPlatform{}
+}
