@@ -26,22 +26,20 @@ public class FormTests {
         $("#firstName").setValue("Ira");
         $("#lastName").setValue("Rubi");
         $("#userEmail").setValue("podic58232@itwbuy.com");
-        $("[for=gender-radio-2").click();
+        $("#gender-radio-2").parent().click();
         $("#userNumber").setValue("8123456789");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("June");
         $(".react-datepicker__year-select").selectOption("1993");
         $(".react-datepicker__day--022").click();
-        $("[for=hobbies-checkbox-1").click();
-        $("[for=hobbies-checkbox-3").click();
-        //$("#uploadPicture").uploadFromClasspath("cat.jpg");
-        File img = new File("src/test/resources/VKrbT-GlAnk.jpg");
-        $("#uploadPicture").uploadFile(img);
+        $("#hobbies-checkbox-1").scrollTo().parent().click();
+        $("#hobbies-checkbox-3").scrollTo().parent().click();
+        $("#uploadPicture").uploadFromClasspath("cat.jpg");
         $("[id=state]").click();
         $("[id=react-select-3-option-0]").click();
         $("[id=city]").click();
         $("[id=react-select-4-option-0]").click();
-        $("#submit").click();
+        $("#submit").scrollTo().click();
 
         $(".table-responsive").shouldHave(text("Ira Rubi"),
                 text("podic58232@itwbuy.com"), text("Female"),
