@@ -3,6 +3,7 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 
 import java.io.File;
 
@@ -32,18 +33,18 @@ public class FormTests {
         $(".react-datepicker__month-select").selectOption("June");
         $(".react-datepicker__year-select").selectOption("1993");
         $(".react-datepicker__day--022").click();
-        $("#hobbies-checkbox-1").scrollTo().parent().click();
-        $("#hobbies-checkbox-3").scrollTo().parent().click();
+        $("#hobbies-checkbox-1").parent().click();
+        $("#hobbies-checkbox-3").parent().click();
         $("#uploadPicture").uploadFromClasspath("cat.jpg");
         $("[id=state]").click();
         $("[id=react-select-3-option-0]").click();
         $("[id=city]").click();
         $("[id=react-select-4-option-0]").click();
-        $("#submit").scrollTo().click();
-
+        $("#submit").click();
         $(".table-responsive").shouldHave(text("Ira Rubi"),
                 text("podic58232@itwbuy.com"), text("Female"),
-                text("8123456789"), text("22 June,1993"), text("Sports, Music"), text("cat.jpg"), text("NCR Delhi"));
+                text("8123456789"), text("22 June,1993"),
+                text("Sports, Music"), text("cat.jpg"), text("NCR Delhi"));
 
     }
 }
