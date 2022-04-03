@@ -6,10 +6,6 @@ repositories {
     mavenCentral()
 }
 
-compileTestJava {
-    options.encoding = 'UTF-8' //так как винда не правильно кодирует кириллицу
-}
-
 sourceCompatibility = 11
 targetCompatibility = 11
 
