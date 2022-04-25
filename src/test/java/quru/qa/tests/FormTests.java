@@ -19,7 +19,10 @@ public class FormTests {
     String firstName = faker.firstName(),
             lastName = faker.lastName(),
             email = faker.email(),
-            expectedFullName = format("%s %s", firstName, lastName);
+            expectedFullName = format("%s %s", firstName, lastName),
+            gender = faker.gender(),
+            number = faker.number(),
+            currentAddress = faker.currentAddress();
 
 
     @BeforeAll
@@ -37,14 +40,14 @@ public class FormTests {
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)
-                .setGender("Female")
-                .setNumber("8123456789")
+                .setGender(gender)
+                .setNumber(number)
                 .setBirthDate("22", "June", "1993")
                 .setSubjects("Math")
                 .setHobbies("Sports")
                 .setHobbies("Music")
                 .setPicture("cat.jpg")
-                .setCurrentAddress("currentAddress")
+                .setCurrentAddress(currentAddress)
                 .setState("NCR")
                 .setCity("Delhi")
                 .setSubmit();
@@ -53,10 +56,12 @@ public class FormTests {
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         registrationPage.checkResult("Student Name", expectedFullName)
                 .checkResult("Student Email", email)
-                .checkResult("Gender", "Female")
-                .checkResult("Mobile", "8123456789")
+                .checkResult("Gender", gender)
+                .checkResult("Mobile", number)
+                .checkResult("Date of Birth", "22 June,1993")
                 .checkResult("Hobbies", "Sports, Music")
                 .checkResult("Picture", "cat.jpg")
+                .checkResult("Address", currentAddress)
                 .checkResult("State and City", "NCR Delhi");
     }
 
