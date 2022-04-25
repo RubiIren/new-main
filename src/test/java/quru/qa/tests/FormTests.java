@@ -19,10 +19,20 @@ public class FormTests {
     String firstName = faker.firstName(),
             lastName = faker.lastName(),
             email = faker.email(),
-            expectedFullName = format("%s %s", firstName, lastName),
             gender = faker.gender(),
             number = faker.number(),
-            currentAddress = faker.currentAddress();
+            day = "22",
+            month = "June",
+            year = "1993",
+            subject = "Math",
+            hobbie = "Sports",
+            picture = "cat.jpg",
+            currentAddress = faker.currentAddress(),
+            state = "NCR",
+            city = "Delhi",
+            expectedFullName = format("%s %s", firstName, lastName),
+            birthDate = format("%s %s%s", day, month, "," + year),
+            stateAndCity = format("%s %s", state, city);
 
 
     @BeforeAll
@@ -42,14 +52,13 @@ public class FormTests {
                 .setEmail(email)
                 .setGender(gender)
                 .setNumber(number)
-                .setBirthDate("22", "June", "1993")
-                .setSubjects("Math")
-                .setHobbies("Sports")
-                .setHobbies("Music")
-                .setPicture("cat.jpg")
+                .setBirthDate(day, month, year)
+                .setSubjects(subject)
+                .setHobbies(hobbie)
+                .setPicture(picture)
                 .setCurrentAddress(currentAddress)
-                .setState("NCR")
-                .setCity("Delhi")
+                .setState(state)
+                .setCity(city)
                 .setSubmit();
 
 
@@ -58,11 +67,13 @@ public class FormTests {
                 .checkResult("Student Email", email)
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", number)
-                .checkResult("Date of Birth", "22 June,1993")
-                .checkResult("Hobbies", "Sports, Music")
-                .checkResult("Picture", "cat.jpg")
+                .checkResult("Date of Birth", birthDate)
+                .checkResult("Subjects", subject)
+                .checkResult("Hobbies", hobbie)
+                .checkResult("Picture", picture)
                 .checkResult("Address", currentAddress)
-                .checkResult("State and City", "NCR Delhi");
+                .checkResult("State and City", stateAndCity);
+
     }
 
 }
