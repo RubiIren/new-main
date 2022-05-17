@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "io.qameta.allure" version "2.9.6"
 }
 
 repositories {
@@ -13,18 +14,43 @@ compileTestJava {
 sourceCompatibility = 11
 targetCompatibility = 11
 
+def allureVersion = "2.17.3",
+    selenideVersion = "6.4.0",
+    junitVersion = "5.8.2",
+    slf4jVersion = "1.7.36",
+    javafakerVersion = "1.0.2"
+
+allure {
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
+}
+
 dependencies {
     // Selenide
-    implementation 'com.codeborne:selenide:6.4.0'
-    testRuntimeOnly("org.slf4j:slf4j-simple:1.7.36") //пишет лог при запуске тестов
+    testImplementation("com.codeborne:selenide:$selenideVersion")
+    testRuntimeOnly("org.slf4j:slf4j-simple:$slf4jVersion") //пишет лог при запуске тестов
 
     // JUnit 5
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
 
     //Faker
-    testImplementation("com.github.javafaker:javafaker:1.0.2")
+    testImplementation("com.github.javafaker:javafaker:$javafakerVersion")
+
+    //Allure
+    testImplementation("io.qameta.allure:allure-selenide:$allureVersion")
+
+
 }
 
 test {
-    useJUnitPlatform{}
+    useJUnitPlatform {}
 }
