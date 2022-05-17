@@ -17,6 +17,8 @@ public class FormTests extends TestBase {
     void successfulSubmitFormTest() {
         step("Open registration form", () -> {
             registrationPage.openPage();
+            executeJavaScript("$('footer').remove()");
+            executeJavaScript("$('#fixedban').remove()");
         });
 
         step("Fill registration form", () -> {
