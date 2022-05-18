@@ -20,6 +20,7 @@ public class RegistrationPage {
         executeJavaScript("$('fixedban').remove()");
         executeJavaScript("$('[id=adplus-anchor]').remove()");
         executeJavaScript("$('[id=close-fixedban]').remove()");
+        sleep(1500);
 
         return this;
     }
