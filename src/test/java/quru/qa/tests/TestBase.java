@@ -16,7 +16,6 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static java.lang.String.format;
 
 public class TestBase {
-    CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);//owner
     RegistrationPage registrationPage = new RegistrationPage();
     DataFaker faker = new DataFaker();
 
@@ -36,15 +35,17 @@ public class TestBase {
             city = "Delhi",
             expectedFullName = format("%s %s", firstName, lastName),
             birthDate = format("%s %s%s", day, month, "," + year),
-            stateAndCity = format("%s %s", state, city),
-            loginSelenoid = config.loginSelenoid(),
-            passwordSelenoid = config.passwordSelenoid();
+            stateAndCity = format("%s %s", state, city);
+
 
 
     @BeforeAll
-    void setup() {
+   static void setup() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);//owner
 
+        String loginSelenoid = config.loginSelenoid(),
+                passwordSelenoid = config.passwordSelenoid();
         String browser = System.getProperty("browser", "chrome");
         String baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
         String browserSize = System.getProperty("browserSize", "1920x1080");
