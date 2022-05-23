@@ -46,10 +46,10 @@ public class TestBase {
 
         String loginSelenoid = config.loginSelenoid(),
                 passwordSelenoid = config.passwordSelenoid();
-        String browser = System.getProperty("browser");
-        String baseUrl = System.getProperty("baseUrl");
-        String browserSize = System.getProperty("browserSize");
-        String selenoidUrl = System.getProperty("remote");
+        String browser = System.getProperty("browser", "chrome");
+        String baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
+        String browserSize = System.getProperty("browserSize", "1920x1080");
+        String selenoidUrl = System.getProperty("remote", "selenoid.autotests.cloud");
 
         Configuration.browser = browser;
         Configuration.baseUrl = baseUrl;
